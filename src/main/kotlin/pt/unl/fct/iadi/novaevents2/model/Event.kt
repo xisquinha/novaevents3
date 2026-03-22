@@ -16,7 +16,8 @@ class Event {
     var name: String? = null
     var date: LocalDate? = null
     var location: String? = null
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "event_type")
     var type: EventType? = null
     var description: String? = null
 }

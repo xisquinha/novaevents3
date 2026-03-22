@@ -1,6 +1,5 @@
 package pt.unl.fct.iadi.novaevents2.controller.dto
 
-import pt.unl.fct.iadi.novaevents2.model.EventType
 import java.time.LocalDate
 
 data class FilterEventsRequest (

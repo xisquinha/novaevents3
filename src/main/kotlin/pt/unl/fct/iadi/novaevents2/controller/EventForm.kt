@@ -2,7 +2,6 @@ package pt.unl.fct.iadi.novaevents2.controller
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
-import pt.unl.fct.iadi.novaevents2.model.EventType
 import java.time.LocalDate
 
 data class EventForm(

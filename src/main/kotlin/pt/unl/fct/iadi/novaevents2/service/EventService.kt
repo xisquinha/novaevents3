@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import pt.unl.fct.iadi.novaevents2.controller.EventForm
 import pt.unl.fct.iadi.novaevents2.controller.dto.EditEventRequest
 import pt.unl.fct.iadi.novaevents2.model.Event
-import pt.unl.fct.iadi.novaevents2.model.EventType
 import pt.unl.fct.iadi.novaevents2.repository.EventRepository
 import java.time.LocalDate
 

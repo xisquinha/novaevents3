@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 import pt.unl.fct.iadi.novaevents2.controller.dto.CreateEventRequest
 import pt.unl.fct.iadi.novaevents2.controller.dto.EditEventRequest
-import pt.unl.fct.iadi.novaevents2.model.EventType
 import pt.unl.fct.iadi.novaevents2.service.ClubService
 import pt.unl.fct.iadi.novaevents2.service.EventService
 import java.time.LocalDate
