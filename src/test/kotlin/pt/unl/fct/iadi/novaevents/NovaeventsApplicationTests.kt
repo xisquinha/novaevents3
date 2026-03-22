@@ -1,10 +1,10 @@
-package pt.unl.fct.iadi.novaevents2
+package pt.unl.fct.iadi.novaevents
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class Novaevents2ApplicationTests {
+class NovaeventsApplicationTests {
 
     @Test
     fun contextLoads() {
