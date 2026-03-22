@@ -28,7 +28,7 @@ class EventService(private val clubService: ClubService, private val eventReposi
         clubService.findById(clubId)
 
         val event = Event()
-        event.clubId = clubId
+        event.club = clubService.findById(clubId)
         event.name = request.name
         event.date = request.date
         event.location = request.location
@@ -71,4 +71,7 @@ class EventService(private val clubService: ClubService, private val eventReposi
     fun checkDuplicateName(name: String): Boolean{
         return eventRepository.findDuplicate(name) != null
     }
+
+    fun findNumEventsFromClub(clubId: Long): Int =
+        eventRepository.findNumEventsFromClub(clubId)
 }

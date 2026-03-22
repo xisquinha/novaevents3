@@ -19,7 +19,7 @@ interface EventRepository: JpaRepository<Event, Long> {
 
     @Query(
         "SELECT e FROM Event e WHERE " +
-        "(:clubId IS NULL OR e.clubId = :clubId) AND " +
+        "(:clubId IS NULL OR e.club.id = :clubId) AND " +
         "(:eventType IS NULL OR e.type = :eventType) AND " +
         "(:dateStart IS NULL OR e.date >= :dateStart) AND " +
         "(:dateEnd IS NULL OR e.date <= :dateEnd)"
@@ -27,6 +27,10 @@ interface EventRepository: JpaRepository<Event, Long> {
     fun findByClubId_Type_DateRange(
         clubId: Long?=-1, eventType: EventType?=null, dateStart: LocalDate?=null, dateEnd: LocalDate?=null
     ): List<Event>
+
+
+    @Query("SELECT COUNT(e) FROM Event e WHERE e.club.id = :clubId")
+    fun findNumEventsFromClub(clubId: Long): Int
 
 
 

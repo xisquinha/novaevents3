@@ -9,7 +9,10 @@ class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
-    var clubId: Long? = null
+    @ManyToOne
+    @JoinColumn(name="club_id")
+    var club: Club? = null
+
     var name: String? = null
     var date: LocalDate? = null
     var location: String? = null

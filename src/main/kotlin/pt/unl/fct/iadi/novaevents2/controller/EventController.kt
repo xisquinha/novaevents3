@@ -31,7 +31,7 @@ class EventController(private val event_service: EventService, private val club_
     fun clubEvents(@PathVariable clubId: Long, model: ModelMap): String {
         val events = event_service.getEventsFromClub(clubId)
         model["events"] = events
-        model["club"] = club_service.findClubById(clubId)
+        model["club"] = club_service.findById(clubId)
         return "clubs/events"
     }
 
@@ -40,7 +40,7 @@ class EventController(private val event_service: EventService, private val club_
         val event = event_service.findById(id)
         model["event"] = event
         model["clubId"] = clubId
-        model["club"] = club_service.findClubById(clubId)
+        model["club"] = club_service.findById(clubId)
         return "events/detail"
     }
 
@@ -79,11 +79,6 @@ class EventController(private val event_service: EventService, private val club_
     }
 
 
-    fun validateEditForm(request: EditEventRequest): Boolean {
-        return request.name.isNotBlank()
-    }
-
-
     @GetMapping("/clubs/{clubId}/events/{id}/edit")
     fun editForm(@PathVariable clubId: Long, @PathVariable id: Long, model: ModelMap): String {
         model["event"] = event_service.findById(id)
@@ -91,11 +86,11 @@ class EventController(private val event_service: EventService, private val club_
         val event = event_service.findById(id)
 
         model["editEventRequest"] = EditEventRequest(
-            name = event.name,
-            date = event.date,
+            name = event.name?:"",
+            date = event.date?:LocalDate.now(),
             type = event.type,
-            location = event.location,
-            description = event.description
+            location = event.location?:"",
+            description = event.description?:""
         )
         model["clubId"] = clubId
         model["eventId"] = id
