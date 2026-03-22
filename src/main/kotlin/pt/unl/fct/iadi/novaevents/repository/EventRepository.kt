@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 import pt.unl.fct.iadi.novaevents.model.Event
+import pt.unl.fct.iadi.novaevents.model.EventType
 import java.time.LocalDate
 
 @Repository

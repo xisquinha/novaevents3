@@ -6,18 +6,24 @@ import org.springframework.ui.ModelMap
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 import pt.unl.fct.iadi.novaevents.controller.dto.EditEventRequest
+import pt.unl.fct.iadi.novaevents.model.EventType
 import pt.unl.fct.iadi.novaevents.service.ClubService
 import pt.unl.fct.iadi.novaevents.service.EventService
+import pt.unl.fct.iadi.novaevents.service.EventTypeService
 import java.time.LocalDate
 
 @Controller
-class EventController(private val event_service: EventService, private val club_service: ClubService) {
+class EventController(
+    private val event_service: EventService,
+    private val club_service: ClubService,
+    private val eventTypeService: EventTypeService,
+) {
 
     @GetMapping("/events")
-    fun list( @RequestParam(required = false) type: EventType?,
-              @RequestParam(required = false) clubId: Long?,
-              @RequestParam(required = false) from: LocalDate?,
-              @RequestParam(required = false) to: LocalDate?,
+    fun list(@RequestParam(required = false) type: EventType?,
+             @RequestParam(required = false) clubId: Long?,
+             @RequestParam(required = false) from: LocalDate?,
+             @RequestParam(required = false) to: LocalDate?,
              model: ModelMap): String
     {
         val events = event_service.filter(type, clubId, from, to)
@@ -45,7 +51,7 @@ class EventController(private val event_service: EventService, private val club_
     @GetMapping("/clubs/{clubId}/events/new")
     fun createForm(@PathVariable clubId: Long, model: ModelMap): String {
         model["clubId"] = clubId
-        model["eventTypes"] = EventType.entries
+        model["eventTypes"] = eventTypeService.findAll().map { it.name }
         model["eventForm"] = EventForm()
         return "events/create"
     }
