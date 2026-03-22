@@ -1,0 +1,19 @@
+package pt.unl.fct.iadi.novaevents2.controller.dto
+
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
+import pt.unl.fct.iadi.novaevents2.model.EventType
+import java.time.LocalDate
+
+data class EditEventRequest (
+
+    @field:NotBlank
+    val name: String = "",
+    @field:NotNull
+    val date: LocalDate? = null,
+    @field:NotNull
+    val type: EventType? = null,
+
+    val location: String ="",
+    val description: String =""
+)

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Event</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <h2>Edit Event</h2>
+
+    <form th:action="@{/clubs/{clubId}/events/{id}(clubId=${event.clubId}, id=${event.id})}"
+          th:object="${editEventRequest}" method="post">
+        <input type="hidden" name="_method" value="put"/>
+
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="color:red;"></p>
+        </div>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" required/><br/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
+        <br/>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" th:field="*{date}" required/><br/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
+        <br/>
+
+        <label for="type">Type</label>
+        <input type="text" id="type" th:field="*{type}"/><br/>
+        <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" style="color:red;"></span>
+        <br/>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" th:field="*{location}"/><br/>
+
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}"></textarea><br/>
+
+        <button type="submit">Save Changes</button>
+        <button><a th:href="@{/clubs/{clubId}/events(clubId=${event.clubId})}">Cancel</a></button>
+    </form>
+
+</body>
+</html>

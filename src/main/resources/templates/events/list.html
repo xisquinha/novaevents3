@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Events</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<form method="get" th:action="@{/events}">
+
+  <label for="type">Type</label>
+  <input type="text" id="type" name="type" th:value="${param.type}"/>
+
+  <label for="clubId">Club</label>
+  <input type="text" id="clubId" name="clubId" th:value="${param.clubId}"/>
+
+  <label for="from">From</label>
+  <input type="date" id="from" name="from" th:value="${param.from}"/>
+
+  <label for="to">To</label>
+  <input type="date" id="to" name="to" th:value="${param.to}"/>
+
+  <button type="submit">Filter</button>
+  <a th:href="@{/events}">Clear</a>
+
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Club</th>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Location</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="event : ${events}">
+    <td><a th:href="@{/clubs/{clubId}/events/{id}(clubId=${event.clubId}, id=${event.id})}" th:text="${event.name}">Event name</a></td>
+    <td><a th:href="@{/clubs/{clubId}(clubId=${event.clubId})}" th:text="${event.clubId}">Event club</a></td>
+    <td th:text="${event.date}">Event date</td>
+    <td th:text="${event.type}">Event type</td>
+    <td th:text="${event.location}">Event location</td>
+    <td>
+      <a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId = ${event.clubId}, id=${event.id})}">Edit</a>
+      <a th:href="@{/clubs/{clubId}/events/{id}/delete(clubId = ${event.clubId}, id=${event.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

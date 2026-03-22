@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head(title)">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title th:text="${title} + ' – Campus Clubs'">Campus Clubs</title>
+        <link rel="stylesheet" href=“https://cdn.jsdelivr.net/.../css/bootstrap.min.css”/>
+    </head>
+    <body>
+        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <div class="container">
+
+                <a class="navbar-brand" th:href="@{/clubs}">Nova Events</a>
+
+                <div class="navbar-nav">
+                    <a class="nav-link" th:href="@{/clubs}">Clubs</a>
+                    <a class="nav-link" th:href="@{/events}">Events</a>
+                </div>
+            </div>
+        </nav>
+    </body>
+</html>

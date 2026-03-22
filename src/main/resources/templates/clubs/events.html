@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title th:text="|${club.name} Events|">Club</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1 th:text="${club.name}">Club Name</h1>
+
+<a th:href="@{/clubs/{clubId}/events/new(clubId=${club.id})}">+ Add Event</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Location</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="event : ${events}">
+    <td><a th:href="@{/clubs/{clubId}/events/{id}(clubId=${club.id}, id=${event.id})}" th:text="${event.name}">Event name</a></td>
+    <td th:text="${event.date}">Date</td>
+    <td th:text="${event.type}">Type</td>
+    <td th:text="${event.location}">Location</td>
+    <td>
+      <a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId=${club.id}, id=${event.id})}">Edit</a>
+      <a th:href="@{/clubs/{clubId}/events/{id}/delete(clubId=${club.id}, id=${event.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

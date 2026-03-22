@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Event</title>
+</head>
+<body>
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+  <p>Are you sure you want to delete the following event?</p>
+  <p>
+    <strong>Name</strong>
+    <span th:text="${event.name}"></span>
+  </p>
+  <p>
+    <strong>Date</strong>
+    <span th:text="${event.date}"></span>
+  </p>
+  <p>
+    <strong>Type</strong>
+    <span th:text="${event.type}"></span>
+  </p>
+  <p>
+    <strong>Location</strong>
+    <span th:text="${event.location}"></span>
+  </p>
+  <p>
+    <strong>Club</strong>
+    <span th:text="${event.clubId}"></span>
+  </p>
+
+  <p>
+    <form th:action="@{/clubs/{clubId}/events/{id} (id=${event.id}, clubId = ${event.clubId})}" method="post" style="display:inline;">
+      <input type="hidden" name="_method" value="DELETE"/>
+      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    </form>
+    <a th:href="@{/clubs/{clubId}/events(clubId = ${event.clubId})}" class="btn btn-primary">No</a>
+
+</body>
+</html>
