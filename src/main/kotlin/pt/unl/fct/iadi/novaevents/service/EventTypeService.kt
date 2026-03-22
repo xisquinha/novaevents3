@@ -9,4 +9,5 @@ class EventTypeService(val eventTypeRepository: EventTypeRepository)
 {
     fun findAll(): List<EventType> = eventTypeRepository.findAll()
 
+    fun findByName(name: String): EventType? = eventTypeRepository.findByName(name)
 }

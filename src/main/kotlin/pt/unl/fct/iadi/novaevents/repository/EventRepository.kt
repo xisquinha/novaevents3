@@ -18,7 +18,7 @@ interface EventRepository: JpaRepository<Event, Long> {
     fun findDuplicate(name: String, excEventId: Long = -1): Event?
 
     @Query(
-        "SELECT e FROM Event e WHERE " +
+        "SELECT e FROM Event e JOIN FETCH e.type WHERE" +
         "(:clubId IS NULL OR e.club.id = :clubId) AND " +
         "(:eventType IS NULL OR e.type = :eventType) AND " +
         "(:dateStart IS NULL OR e.date >= :dateStart) AND " +

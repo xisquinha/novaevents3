@@ -9,7 +9,11 @@ import pt.unl.fct.iadi.novaevents.repository.EventRepository
 import java.time.LocalDate
 
 @Service
-class EventService(private val clubService: ClubService, private val eventRepository: EventRepository ) {
+class EventService(
+    private val clubService: ClubService,
+    private val eventRepository: EventRepository,
+    private val eventTypeService: EventTypeService
+    ) {
 
     fun findById(id: Long): Event = eventRepository.findById(id).orElseThrow()
     fun findAll(): List<Event> = eventRepository.findAll()
@@ -32,7 +36,7 @@ class EventService(private val clubService: ClubService, private val eventReposi
         event.name = request.name
         event.date = request.date
         event.location = request.location
-        event.type = EventType().apply { name = request.type }
+        event.type = eventTypeService.findByName(request.type!!)
         event.description = request.description
 
         eventRepository.save(event)
