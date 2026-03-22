@@ -18,10 +18,11 @@ class EventService(
     fun findById(id: Long): Event = eventRepository.findById(id).orElseThrow()
     fun findAll(): List<Event> = eventRepository.findAll()
 
-    fun filter(type: EventType?, clubId: Long?, from: LocalDate?,
-               to: LocalDate?): List<Event>
-    {
-        if(clubId != null) clubService.findById(clubId)
+    fun filter(
+        type: EventType?, clubId: Long?, from: LocalDate?,
+        to: LocalDate?
+    ): List<Event> {
+        if (clubId != null) clubService.findById(clubId)
 
         val events = eventRepository.findByClubId_Type_DateRange(clubId, type, from, to)
         return events
@@ -69,17 +70,14 @@ class EventService(
         )
 
 
-    fun getEventsFromClub(clubId: Long): List<Event>{
+    fun getEventsFromClub(clubId: Long): List<Event> {
 
         clubService.findById(clubId)
         return eventRepository.findByClubId_Type_DateRange(clubId)
     }
 
     // true if there is a duplicate (event with the same name)
-    fun checkDuplicateName(name: String): Boolean{
-        return eventRepository.findDuplicate(name) != null
+    fun checkDuplicateName(name: String, excEventId: Long=-1): Boolean {
+        return eventRepository.findDuplicate(name, excEventId) != null
     }
-
-    /*fun findNumEventsFromClub(clubId: Long): Int =
-        eventRepository.findNumEventsFromClub(clubId)*/
 }

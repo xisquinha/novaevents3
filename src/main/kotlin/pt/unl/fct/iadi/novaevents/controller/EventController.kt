@@ -115,7 +115,7 @@ class EventController(
             return "events/edit"
         }
 
-        val dupName = event_service.checkDuplicateName(request.name)
+        val dupName = event_service.checkDuplicateName(request.name, clubId)
         if (dupName) {
             bindingResult.rejectValue("name", "duplicate", "An event with this name already exists")
             model["event"] = event_service.findById(id)
@@ -127,7 +127,8 @@ class EventController(
 
         model["event"] = event
         model["clubId"] = clubId
-        return "redirect:/clubs/$clubId/events/${event.id}"
+        //return "redirect:/clubs/$clubId/events/${event.id}"
+        return "redirect:/clubs/$clubId"
     }
 
     @GetMapping("/clubs/{clubId}/events/{id}/delete")
