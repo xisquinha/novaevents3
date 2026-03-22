@@ -1,15 +1,15 @@
-package pt.unl.fct.iadi.novaevents2
+package pt.unl.fct.iadi.novaevents
 
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
-import pt.unl.fct.iadi.novaevents2.model.Club
-import pt.unl.fct.iadi.novaevents2.model.ClubCategory
-import pt.unl.fct.iadi.novaevents2.model.Event
-import pt.unl.fct.iadi.novaevents2.model.EventType
-import pt.unl.fct.iadi.novaevents2.repository.ClubRepository
-import pt.unl.fct.iadi.novaevents2.repository.EventRepository
-import pt.unl.fct.iadi.novaevents2.repository.EventTypeRepository
+import pt.unl.fct.iadi.novaevents.model.Club
+import pt.unl.fct.iadi.novaevents.model.ClubCategory
+import pt.unl.fct.iadi.novaevents.model.Event
+import pt.unl.fct.iadi.novaevents.model.EventType
+import pt.unl.fct.iadi.novaevents.repository.ClubRepository
+import pt.unl.fct.iadi.novaevents.repository.EventRepository
+import pt.unl.fct.iadi.novaevents.repository.EventTypeRepository
 import java.time.LocalDate
 
 @Component

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pt.unl.fct.iadi</groupId>
-    <artifactId>novaevents2</artifactId>
+    <artifactId>novaevents</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>novaevents2</name>
-    <description>novaevents2</description>
+    <name>novaevents</name>
+    <description>novaevents</description>
     <url/>
     <licenses>
         <license/>

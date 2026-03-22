@@ -1,4 +1,4 @@
-package pt.unl.fct.iadi.novaevents2.controller
+package pt.unl.fct.iadi.novaevents.controller
 
 class ClubNotFoundException(message: String = "Club not found") : NoSuchElementException(message)
 class EventNotFoundException(message: String = "Event not found") : NoSuchElementException(message)

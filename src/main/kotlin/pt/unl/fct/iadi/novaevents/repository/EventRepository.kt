@@ -1,9 +1,9 @@
-package pt.unl.fct.iadi.novaevents2.repository
+package pt.unl.fct.iadi.novaevents.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
-import pt.unl.fct.iadi.novaevents2.model.Event
+import pt.unl.fct.iadi.novaevents.model.Event
 import java.time.LocalDate
 
 @Repository

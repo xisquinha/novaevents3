@@ -1,14 +1,13 @@
-package pt.unl.fct.iadi.novaevents2.controller
+package pt.unl.fct.iadi.novaevents.controller
 
 import jakarta.validation.Valid
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
-import pt.unl.fct.iadi.novaevents2.controller.dto.CreateEventRequest
-import pt.unl.fct.iadi.novaevents2.controller.dto.EditEventRequest
-import pt.unl.fct.iadi.novaevents2.service.ClubService
-import pt.unl.fct.iadi.novaevents2.service.EventService
+import pt.unl.fct.iadi.novaevents.controller.dto.EditEventRequest
+import pt.unl.fct.iadi.novaevents.service.ClubService
+import pt.unl.fct.iadi.novaevents.service.EventService
 import java.time.LocalDate
 
 @Controller

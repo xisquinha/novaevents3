@@ -1,10 +1,10 @@
-package pt.unl.fct.iadi.novaevents2.service
+package pt.unl.fct.iadi.novaevents.service
 
 import org.springframework.stereotype.Service
-import pt.unl.fct.iadi.novaevents2.controller.EventForm
-import pt.unl.fct.iadi.novaevents2.controller.dto.EditEventRequest
-import pt.unl.fct.iadi.novaevents2.model.Event
-import pt.unl.fct.iadi.novaevents2.repository.EventRepository
+import pt.unl.fct.iadi.novaevents.controller.EventForm
+import pt.unl.fct.iadi.novaevents.controller.dto.EditEventRequest
+import pt.unl.fct.iadi.novaevents.model.Event
+import pt.unl.fct.iadi.novaevents.repository.EventRepository
 import java.time.LocalDate
 
 @Service

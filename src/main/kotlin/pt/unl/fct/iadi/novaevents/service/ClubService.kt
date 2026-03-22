@@ -1,8 +1,8 @@
-package pt.unl.fct.iadi.novaevents2.service
+package pt.unl.fct.iadi.novaevents.service
 
 import org.springframework.stereotype.Service
-import pt.unl.fct.iadi.novaevents2.model.Club
-import pt.unl.fct.iadi.novaevents2.repository.ClubRepository
+import pt.unl.fct.iadi.novaevents.model.Club
+import pt.unl.fct.iadi.novaevents.repository.ClubRepository
 
 @Service
 class ClubService(val clubRepository: ClubRepository) {

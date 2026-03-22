@@ -1,4 +1,4 @@
-package pt.unl.fct.iadi.novaevents2.controller.dto
+package pt.unl.fct.iadi.novaevents.controller.dto
 
 import java.time.LocalDate
 

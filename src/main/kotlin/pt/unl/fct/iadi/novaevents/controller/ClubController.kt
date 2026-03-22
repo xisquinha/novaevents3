@@ -1,12 +1,12 @@
-package pt.unl.fct.iadi.novaevents2.controller
+package pt.unl.fct.iadi.novaevents.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import pt.unl.fct.iadi.novaevents2.service.ClubService
-import pt.unl.fct.iadi.novaevents2.service.EventService
+import pt.unl.fct.iadi.novaevents.service.ClubService
+import pt.unl.fct.iadi.novaevents.service.EventService
 
 @Controller
 @RequestMapping("/clubs")

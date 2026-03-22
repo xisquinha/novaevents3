@@ -1,4 +1,4 @@
-package pt.unl.fct.iadi.novaevents2.controller
+package pt.unl.fct.iadi.novaevents.controller
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull

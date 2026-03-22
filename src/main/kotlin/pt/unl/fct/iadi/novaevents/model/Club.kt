@@ -1,4 +1,4 @@
-package pt.unl.fct.iadi.novaevents2.model
+package pt.unl.fct.iadi.novaevents.model
 
 import jakarta.persistence.*
 
