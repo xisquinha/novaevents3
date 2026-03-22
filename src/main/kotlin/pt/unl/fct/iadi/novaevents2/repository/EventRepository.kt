@@ -1,10 +1,33 @@
 package pt.unl.fct.iadi.novaevents2.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
+import org.springframework.stereotype.Repository
 import pt.unl.fct.iadi.novaevents2.model.Event
 import pt.unl.fct.iadi.novaevents2.model.EventType
+import java.time.LocalDate
 
+@Repository
 interface EventRepository: JpaRepository<Event, Long> {
+
+    @Query(
+        "SELECT e FROM Event e WHERE " +
+        "(:excEventId = -1 OR e.id <> :excEventId) AND" +
+        "(e.name = :name)"
+    )
     fun findDuplicate(name: String, excEventId: Long = -1): Event?
-    fun findFilterEvents(clubId: Long = -1, eventType: EventType? = null): List<Event>
+
+    @Query(
+        "SELECT e FROM Event e WHERE " +
+        "(:clubId IS NULL OR e.clubId = :clubId) AND " +
+        "(:eventType IS NULL OR e.type = :eventType) AND " +
+        "(:dateStart IS NULL OR e.date >= :dateStart) AND " +
+        "(:dateEnd IS NULL OR e.date <= :dateEnd)"
+    )
+    fun findByClubId_Type_DateRange(
+        clubId: Long?=-1, eventType: EventType?=null, dateStart: LocalDate?=null, dateEnd: LocalDate?=null
+    ): List<Event>
+
+
+
 }

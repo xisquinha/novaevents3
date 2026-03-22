@@ -5,53 +5,45 @@ import pt.unl.fct.iadi.novaevents2.controller.EventForm
 import pt.unl.fct.iadi.novaevents2.controller.dto.EditEventRequest
 import pt.unl.fct.iadi.novaevents2.model.Event
 import pt.unl.fct.iadi.novaevents2.model.EventType
-import pt.unl.fct.iadi.novaevents2.repository.ClubRepository
 import pt.unl.fct.iadi.novaevents2.repository.EventRepository
 import java.time.LocalDate
-import java.util.*
-import kotlin.NoSuchElementException
 
 @Service
-class EventService(private val clubRepository: ClubRepository, private val eventRepository: EventRepository ) {
+class EventService(private val clubService: ClubService, private val eventRepository: EventRepository ) {
 
-    private var actualId: Long = 25
-
-    fun newId(): Long{
-        actualId += 1
-        return actualId
-    }
+    fun findById(id: Long): Event = eventRepository.findById(id).orElseThrow()
+    fun findAll(): List<Event> = eventRepository.findAll()
 
     fun filter(type: EventType?, clubId: Long?, from: LocalDate?,
                to: LocalDate?): List<Event>
     {
-        if(clubId != null) clubRepository.findById(clubId)
+        if(clubId != null) clubService.findById(clubId)
 
-        val events = eventRepository.findAll().filter{ event ->
-            (type == null || event.type == type) &&
-            (clubId == null || clubId == event.clubId) &&
-            (from == null || !event.date.isBefore(from)) &&
-            (to == null || event.date.isAfter(to))
-        }
+        val events = eventRepository.findByClubId_Type_DateRange(clubId, type, from, to)
         return events
     }
 
     fun createEvent(request: EventForm, clubId: Long): Event {
 
-        val id = newId()
-        clubRepository.findById(clubId)
+        clubService.findById(clubId)
 
-        val event = Event(id, clubId, request.name, request.date!!,
-            request.location, request.type!!, request.description)
+        val event = Event()
+        event.clubId = clubId
+        event.name = request.name
+        event.date = request.date
+        event.location = request.location
+        event.type = request.type
+        event.description = request.description
 
-        events[event.id] = event
+        eventRepository.save(event)
         return event
     }
 
     fun editEvent(ogId: Long, request: EditEventRequest, clubId: Long): Event {
 
-        clubRepository.findById(clubId)
+        clubService.findById(clubId)
 
-        val ogEvent = eventRepository.findById(ogId).orElseThrow()
+        val ogEvent = findById(ogId)
 
         if (request.name != ogEvent.name) ogEvent.name = request.name
         if (request.date != ogEvent.date) ogEvent.date = request.date!!
@@ -59,31 +51,24 @@ class EventService(private val clubRepository: ClubRepository, private val event
         if (request.type != ogEvent.type) ogEvent.type = request.type!!
         if (request.description != ogEvent.description) ogEvent.description = request.description
 
-        events[ogId] = ogEvent
-
+        eventRepository.save(ogEvent)
         return ogEvent
     }
 
     fun deleteEvent(id: Long) =
         eventRepository.delete(
-            eventRepository.findById(id).orElseThrow()
+            findById(id)
         )
 
 
     fun getEventsFromClub(clubId: Long): List<Event>{
 
-        val evs = mutableListOf<Event>()
-
-        clubRepository.findById(clubId)
-
-        for(event in eventRepository.findAll()){
-            if(event.clubId == clubId)
-                evs.add(event)
-        }
-        return evs
+        clubService.findById(clubId)
+        return eventRepository.findByClubId_Type_DateRange(clubId)
     }
 
+    // true if there is a duplicate (event with the same name)
     fun checkDuplicateName(name: String): Boolean{
-        return eventRepository.findAll().any { it.name == name }
+        return eventRepository.findDuplicate(name) != null
     }
 }
