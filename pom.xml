@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pt.unl.fct.iadi</groupId>
-    <artifactId>novaevents</artifactId>
+    <artifactId>novaevents2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>novaevents</name>
-    <description>novaevents</description>
+    <name>novaevents2</name>
+    <description>novaevents2</description>
     <url/>
     <licenses>
         <license/>
@@ -67,6 +67,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
         </dependency>
 
 

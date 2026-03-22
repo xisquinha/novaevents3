@@ -1,13 +1,19 @@
 package pt.unl.fct.iadi.novaevents2.model
 
+import jakarta.persistence.*
 import java.time.LocalDate
 
-data class Event (
-    val id: Long,
-    val clubId: Long,
-    var name: String,
-    var date: LocalDate,
-    var location: String,
-    var type: EventType,
-    var description: String
-)
+@Entity
+class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+
+    var clubId: Long? = null
+    var name: String? = null
+    var date: LocalDate? = null
+    var location: String? = null
+    @Enumerated(EnumType.STRING)
+    var type: EventType? = null
+    var description: String? = null
+}

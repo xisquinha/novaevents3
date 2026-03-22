@@ -1,8 +1,17 @@
 package pt.unl.fct.iadi.novaevents2.model
 
-data class Club(
-    val id: Long,
-    val name: String,
-    val description: String,
-    val category: ClubCategory,
-)
+import jakarta.persistence.*
+
+@Entity
+class Club {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+
+    var name: String? = null
+
+    @Column(length = 2000)
+    var description: String? = null
+    @Enumerated(EnumType.STRING)
+    var category: ClubCategory? = null
+}
