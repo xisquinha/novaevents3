@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import pt.unl.fct.iadi.novaevents.model.Club
 import pt.unl.fct.iadi.novaevents.service.ClubService
 import pt.unl.fct.iadi.novaevents.service.EventService
 
@@ -14,8 +15,12 @@ class ClubController(private val clubService: ClubService, private val eventServ
 
     @GetMapping
     fun listClubs(model: ModelMap): String {
-        model["clubs"] = clubService.getClubs()
-        model["eventService"] = eventService
+        val clubs = clubService.findAll()
+
+        val eventCounts = eventService.countGroupedByClub()
+
+        model["clubs"] = clubs
+        model["eventCounts"] = eventCounts
         return "clubs/list"
     }
 

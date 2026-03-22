@@ -29,9 +29,10 @@ interface EventRepository: JpaRepository<Event, Long> {
     ): List<Event>
 
 
-    @Query("SELECT COUNT(e) FROM Event e WHERE e.club.id = :clubId")
-    fun findNumEventsFromClub(clubId: Long): Int
+    //@Query("SELECT COUNT(e) FROM Event e WHERE e.club.id = :clubId")
+    //fun findNumEventsFromClub(clubId: Long): Int
 
-
+    @Query("SELECT e.club.id, COUNT(e) FROM Event e GROUP BY e.club.id")
+    fun countEventsGroupedByClub(): List<Array<Any>>
 
 }

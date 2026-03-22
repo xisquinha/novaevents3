@@ -27,6 +27,10 @@ class EventService(
         return events
     }
 
+    fun countGroupedByClub(): Map<Long, Long> =
+        eventRepository.countEventsGroupedByClub()
+            .associate { (it[0] as Long) to (it[1] as Long) }
+
     fun createEvent(request: EventForm, clubId: Long): Event {
 
         clubService.findById(clubId)
@@ -76,6 +80,6 @@ class EventService(
         return eventRepository.findDuplicate(name) != null
     }
 
-    fun findNumEventsFromClub(clubId: Long): Int =
-        eventRepository.findNumEventsFromClub(clubId)
+    /*fun findNumEventsFromClub(clubId: Long): Int =
+        eventRepository.findNumEventsFromClub(clubId)*/
 }

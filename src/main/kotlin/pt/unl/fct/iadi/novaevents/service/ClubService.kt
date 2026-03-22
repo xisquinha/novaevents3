@@ -7,8 +7,6 @@ import pt.unl.fct.iadi.novaevents.repository.ClubRepository
 @Service
 class ClubService(val clubRepository: ClubRepository) {
 
-    fun getClubs(): List<Club> = clubRepository.findAll()
-
     fun findById(clubId: Long): Club =
         clubRepository.findById(clubId).orElseThrow()
 

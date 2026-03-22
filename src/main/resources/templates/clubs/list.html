@@ -26,7 +26,7 @@
                             <p th:text="${club.description}"></p>
                         </details>
                     </td>
-                    <td th:text="${eventService.findNumEventsFromClub(club.id)}"></td>
+                    <td th:text="${eventCounts[club.id]}"></td>
                     <td>
                         <a th:href="@{/clubs/{id}(id=${club.id})}">View Details</a>
                     </td>
