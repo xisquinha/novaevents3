@@ -25,15 +25,15 @@
   </p>
   <p>
     <strong>Club</strong>
-    <span th:text="${event.clubId}"></span>
+    <span th:text="${event.club.id}"></span>
   </p>
 
   <p>
-    <form th:action="@{/clubs/{clubId}/events/{id} (id=${event.id}, clubId = ${event.clubId})}" method="post" style="display:inline;">
+    <form th:action="@{/clubs/{clubId}/events/{id} (id=${event.id}, clubId = ${event.club.id})}" method="post" style="display:inline;">
       <input type="hidden" name="_method" value="DELETE"/>
       <button type="submit" class="btn btn-danger">Yes, Delete</button>
     </form>
-    <a th:href="@{/clubs/{clubId}/events(clubId = ${event.clubId})}" class="btn btn-primary">No</a>
+    <a th:href="@{/clubs/{clubId}/events(clubId = ${event.club.id})}" class="btn btn-primary">No</a>
 
 </body>
 </html>

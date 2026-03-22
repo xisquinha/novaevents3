@@ -9,7 +9,7 @@
 
     <h2>Edit Event</h2>
 
-    <form th:action="@{/clubs/{clubId}/events/{id}(clubId=${event.clubId}, id=${event.id})}"
+    <form th:action="@{/clubs/{clubId}/events/{id}(clubId=${event.club.id}, id=${event.id})}"
           th:object="${editEventRequest}" method="post">
         <input type="hidden" name="_method" value="put"/>
 
@@ -40,7 +40,7 @@
         <textarea id="description" th:field="*{description}"></textarea><br/>
 
         <button type="submit">Save Changes</button>
-        <button><a th:href="@{/clubs/{clubId}/events(clubId=${event.clubId})}">Cancel</a></button>
+        <button><a th:href="@{/clubs/{clubId}/events(clubId=${event.club.id})}">Cancel</a></button>
     </form>
 
 </body>

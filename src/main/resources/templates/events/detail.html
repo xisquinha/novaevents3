@@ -14,8 +14,8 @@
     <p><b>Type:</b> <span th:text="${event.type}">Event Type</span></p>
     <p><b>Description:</b> <span th:text="${event.description}">Event Description</span></p>
 
-    <span><a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId=${event.clubId}, id=${event.id})}" class="btn btn-primary">Edit</a></span>
-    <span><a th:href="@{/clubs/{clubId}/events/{id}/delete(clubId=${event.clubId}, id=${event.id})}" class="btn btn-danger">Delete</a></span>
+    <span><a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId=${event.club.id}, id=${event.id})}" class="btn btn-primary">Edit</a></span>
+    <span><a th:href="@{/clubs/{clubId}/events/{id}/delete(clubId=${event.club.id}, id=${event.id})}" class="btn btn-danger">Delete</a></span>
 
   </body>
 </html>
