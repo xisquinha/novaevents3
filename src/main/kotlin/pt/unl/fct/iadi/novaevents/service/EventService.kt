@@ -32,7 +32,7 @@ class EventService(private val clubService: ClubService, private val eventReposi
         event.name = request.name
         event.date = request.date
         event.location = request.location
-        event.type = request.type
+        event.type = EventType().apply { name = request.type }
         event.description = request.description
 
         eventRepository.save(event)

@@ -64,6 +64,7 @@ class EventController(
 
         if(bindingResult.hasErrors()) {
             model["clubId"] = clubId
+            model["eventTypes"] = eventTypeService.findAll().map { it.name }
             return "events/create"
         }
 
@@ -74,6 +75,7 @@ class EventController(
         if(dupName){
             bindingResult.rejectValue("name", "duplicate",
                 "An event with this name already exists")
+            model["eventTypes"] = eventTypeService.findAll().map { it.name }
             return "events/create"
         }
 
