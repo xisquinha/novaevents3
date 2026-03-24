@@ -12,7 +12,7 @@ data class EditEventRequest (
     @field:NotNull
     val date: LocalDate? = null,
     @field:NotNull
-    val type: EventType? = null,
+    val type: String? = null,
 
     val location: String ="",
     val description: String =""
