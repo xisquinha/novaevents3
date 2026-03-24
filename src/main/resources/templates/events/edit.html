@@ -30,7 +30,7 @@
         <br/>
 
         <label for="type">Type</label>
-        <select id="type" th:field="*{type.name}">
+        <select id="type" th:field="*{type}">
             <option th:each="t : ${eventTypes}"
                     th:value="${t}" th:text="${t}"></option>
         </select>
