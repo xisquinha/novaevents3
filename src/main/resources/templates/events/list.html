@@ -42,7 +42,7 @@
     <td><a th:href="@{/clubs/{clubId}/events/{id}(clubId=${event.club.id}, id=${event.id})}" th:text="${event.name}">Event name</a></td>
     <td><a th:href="@{/clubs/{clubId}(clubId=${event.club.id})}" th:text="${event.club.id}">Event club</a></td>
     <td th:text="${event.date}">Event date</td>
-    <td th:text="${event.type}">Event type</td>
+    <td th:text="${event.type.name}">Event type</td>
     <td th:text="${event.location}">Event location</td>
     <td>
       <a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId = ${event.club.id}, id=${event.id})}">Edit</a>

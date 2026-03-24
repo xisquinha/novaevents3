@@ -25,7 +25,7 @@
   <tr th:each="event : ${events}">
     <td><a th:href="@{/clubs/{clubId}/events/{id}(clubId=${club.id}, id=${event.id})}" th:text="${event.name}">Event name</a></td>
     <td th:text="${event.date}">Date</td>
-    <td th:text="${event.type}">Type</td>
+    <td th:text="${event.type.name}">Type</td>
     <td th:text="${event.location}">Location</td>
     <td>
       <a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId=${club.id}, id=${event.id})}">Edit</a>

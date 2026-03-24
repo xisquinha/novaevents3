@@ -24,12 +24,16 @@
         <br/>
 
         <label for="date">Date</label>
-        <input type="date" id="date" th:field="*{date}" required/><br/>
+        <input type="date" id="date" th:name="date"
+               th:value="${#temporals.format(editEventRequest.date, 'yyyy-MM-dd')}" required/><br/>
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
         <br/>
 
         <label for="type">Type</label>
-        <input type="text" id="type" th:field="*{type}"/><br/>
+        <select id="type" th:field="*{type.name}">
+            <option th:each="t : ${eventTypes}"
+                    th:value="${t}" th:text="${t}"></option>
+        </select>
         <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" style="color:red;"></span>
         <br/>
 

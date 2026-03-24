@@ -11,7 +11,7 @@
     <p><b>Club's Name:</b> <span th:text="${club.name}">Club's name</span></p>
     <p><b>Date:</b> <span th:text="${event.date}">Event Date</span></p>
     <p><b>Location:</b> <span th:text="${event.location}">Event Location</span></p>
-    <p><b>Type:</b> <span th:text="${event.type}">Event Type</span></p>
+    <p><b>Type:</b> <span th:text="${event.type.name}">Event Type</span></p>
     <p><b>Description:</b> <span th:text="${event.description}">Event Description</span></p>
 
     <span><a th:href="@{/clubs/{clubId}/events/{id}/edit(clubId=${event.club.id}, id=${event.id})}" class="btn btn-primary">Edit</a></span>

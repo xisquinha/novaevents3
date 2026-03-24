@@ -20,13 +20,15 @@ class EventController(
 ) {
 
     @GetMapping("/events")
-    fun list(@RequestParam(required = false) type: EventType?,
+    fun list(@RequestParam(required = false) type: String?,
              @RequestParam(required = false) clubId: Long?,
              @RequestParam(required = false) from: LocalDate?,
              @RequestParam(required = false) to: LocalDate?,
              model: ModelMap): String
     {
-        val events = event_service.filter(type, clubId, from, to)
+        val sendType = if(type.isNullOrBlank()) null else eventTypeService.findByName(type)
+
+        val events = event_service.filter(sendType, clubId, from, to)
         model["events"] = events
         return "events/list"
     }
@@ -91,6 +93,7 @@ class EventController(
 
         val event = event_service.findById(id)
 
+        model["eventTypes"] = eventTypeService.findAll().map { it.name }
         model["editEventRequest"] = EditEventRequest(
             name = event.name?:"",
             date = event.date?:LocalDate.now(),
@@ -108,6 +111,8 @@ class EventController(
     fun edit(@Valid  @ModelAttribute request: EditEventRequest, bindingResult: BindingResult, @PathVariable clubId: Long,
              @PathVariable id: Long, model: ModelMap): String{
 
+        model["eventTypes"] = eventTypeService.findAll().map { it.name }
+
         if(bindingResult.hasErrors()) {
             model["event"] = event_service.findById(id)
             model["request"] = request
@@ -115,20 +120,20 @@ class EventController(
             return "events/edit"
         }
 
-        val dupName = event_service.checkDuplicateName(request.name, clubId)
+        val dupName = event_service.checkDuplicateName(request.name, id)
         if (dupName) {
             bindingResult.rejectValue("name", "duplicate", "An event with this name already exists")
             model["event"] = event_service.findById(id)
             model["clubId"] = clubId
-            return "events/edit"  // ← view name, not redirect
+            return "events/edit"
         }
 
         val event = event_service.editEvent(id, request, clubId)
 
         model["event"] = event
         model["clubId"] = clubId
-        //return "redirect:/clubs/$clubId/events/${event.id}"
-        return "redirect:/clubs/$clubId"
+        return "redirect:/clubs/$clubId/events/${event.id}"
+        //return "redirect:/clubs/$clubId"
     }
 
     @GetMapping("/clubs/{clubId}/events/{id}/delete")
