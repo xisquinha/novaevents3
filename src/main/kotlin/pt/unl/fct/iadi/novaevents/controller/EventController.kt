@@ -115,7 +115,7 @@ class EventController(
 
         if(bindingResult.hasErrors()) {
             model["event"] = event_service.findById(id)
-            model["request"] = request
+            model["editEventRequest"] = request
             model["clubId"] = clubId
             return "events/edit"
         }
@@ -124,6 +124,7 @@ class EventController(
         if (dupName) {
             bindingResult.rejectValue("name", "duplicate", "An event with this name already exists")
             model["event"] = event_service.findById(id)
+            model["editEventRequest"] = request
             model["clubId"] = clubId
             return "events/edit"
         }
@@ -132,8 +133,8 @@ class EventController(
 
         model["event"] = event
         model["clubId"] = clubId
-        return "redirect:/clubs/$clubId/events/${event.id}"
-        //return "redirect:/clubs/$clubId"
+        //return "redirect:/clubs/$clubId/events/${event.id}"
+        return "redirect:/clubs/$clubId"
     }
 
     @GetMapping("/clubs/{clubId}/events/{id}/delete")
