@@ -97,7 +97,7 @@ class EventController(
         model["editEventRequest"] = EditEventRequest(
             name = event.name?:"",
             date = event.date?:LocalDate.now(),
-            type = event.type,
+            type = event.type?.name,
             location = event.location?:"",
             description = event.description?:""
         )

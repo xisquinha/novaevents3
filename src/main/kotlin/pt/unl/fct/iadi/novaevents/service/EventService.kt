@@ -57,7 +57,8 @@ class EventService(
         if (request.name != ogEvent.name) ogEvent.name = request.name
         if (request.date != ogEvent.date) ogEvent.date = request.date!!
         if (request.location != ogEvent.location) ogEvent.location = request.location
-        if (request.type != ogEvent.type) ogEvent.type = request.type!!
+        if (eventTypeService.findByName(request.type!!) != ogEvent.type)
+            ogEvent.type = eventTypeService.findByName(request.type)
         if (request.description != ogEvent.description) ogEvent.description = request.description
 
         eventRepository.save(ogEvent)
