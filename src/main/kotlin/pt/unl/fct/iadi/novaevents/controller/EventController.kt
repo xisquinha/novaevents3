@@ -133,8 +133,7 @@ class EventController(
 
         model["event"] = event
         model["clubId"] = clubId
-        //return "redirect:/clubs/$clubId/events/${event.id}"
-        return "redirect:/clubs/$clubId"
+        return "redirect:/clubs/$clubId/events/${event.id}"
     }
 
     @GetMapping("/clubs/{clubId}/events/{id}/delete")
